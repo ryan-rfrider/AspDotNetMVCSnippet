@@ -16,7 +16,11 @@ namespace AspDotNetMVCSnippet.Controllers
         public string SelA { get; set; }
 
         public string SelListAValue { get; set; }
+
+        public List<string> SelListBValue { get; set; }
         public List<SelectListItem> SelListA { get; set; }
+
+        public List<SelectListItem> SelListB { get; set; }
     }
     public class HomeController : Controller
     {
@@ -45,9 +49,28 @@ namespace AspDotNetMVCSnippet.Controllers
                     Value="G",
                     Selected=true
                 } ,
-            }; 
+            };
 
-
+            model.SelListB = new List<SelectListItem>() {
+                new SelectListItem() {
+                    Text="Chose",
+                    Value=""
+                } ,
+                new SelectListItem() {
+                    Text="Apple",
+                    Value="A"
+                } ,
+                new SelectListItem() {
+                    Text="DELL",
+                    Value="D",
+                    Selected=true
+                } ,
+                new SelectListItem() {
+                    Text="HP",
+                    Value="H",
+                    Selected=true
+                } ,
+            };
             return View(model);
         }
 

@@ -24,11 +24,15 @@
                 <option value="F" @(Model.SelA == "F" ? "selected" : "")>FaceBook</option>
                 <option value="G" @(Model.SelA == "G" ? "selected" : "")>Google</option>
             </select>
-          
+
         </div>
 
         <div class="col-md-auto">
-                @Html.DropDownListFor(x=>x.SelListAValue,Model.SelListA,new { @class = "form-select" })
+            @Html.DropDownListFor(x => x.SelListAValue, Model.SelListA, new { @class = "form-select" })
+        </div>
+
+        <div class="col-md-auto">
+            @Html.ListBoxFor(x => x.SelListBValue, Model.SelListB, new { @class = "form-select" })
         </div>
 
         <div class="col-md-auto" style="margin-top: 10px;">
