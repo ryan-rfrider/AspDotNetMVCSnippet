@@ -97,6 +97,27 @@ namespace AspDotNetMVCSnippet.Controllers
                 } ,
             };
 
+            vm.SelListB = new List<SelectListItem>() {
+                new SelectListItem() {
+                    Text="Chose",
+                    Value=""
+                } ,
+                new SelectListItem() {
+                    Text="Apple",
+                    Value="A"
+                } ,
+                new SelectListItem() {
+                    Text="DELL",
+                    Value="D",
+                    Selected=true
+                } ,
+                new SelectListItem() {
+                    Text="HP",
+                    Value="H",
+                    Selected=true
+                } ,
+            };
+
             return View(vm);
         }
 
