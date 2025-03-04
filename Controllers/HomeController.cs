@@ -22,6 +22,16 @@ namespace AspDotNetMVCSnippet.Controllers
 
         public List<SelectListItem> SelListB { get; set; }
     }
+
+    public class CheckboxViewModel
+    {
+        public bool ChkA { get; set; }
+        public bool ChkB { get; set; }
+        public bool ChkC { get; set; }
+
+        public List<SelectListItem> ChkListA { get; set; }
+
+    }
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -29,7 +39,7 @@ namespace AspDotNetMVCSnippet.Controllers
             MyViewModel model = new MyViewModel();
             model.TxtA = "hello";
             model.TxtB = "world";
-            model.SelA = "G";
+            model.SelA = "";
 
             model.SelListA = new List<SelectListItem>() {
                 new SelectListItem() {
@@ -46,7 +56,7 @@ namespace AspDotNetMVCSnippet.Controllers
                 } ,
                 new SelectListItem() {
                     Text="Google",
-                    Value="G",
+                    Value="G" ,
                     Selected=true
                 } ,
             };
@@ -108,13 +118,11 @@ namespace AspDotNetMVCSnippet.Controllers
                 } ,
                 new SelectListItem() {
                     Text="DELL",
-                    Value="D",
-                    Selected=true
+                    Value="D" 
                 } ,
                 new SelectListItem() {
                     Text="HP",
-                    Value="H",
-                    Selected=true
+                    Value="H" 
                 } ,
             };
 
@@ -123,9 +131,37 @@ namespace AspDotNetMVCSnippet.Controllers
 
         public ActionResult About()
         {
-            ViewBag.Message = "Your application description page.";
+            CheckboxViewModel vm = new CheckboxViewModel();
 
-            return View();
+            vm.ChkA = true;
+            vm.ChkC = true;
+
+            vm.ChkListA = new List<SelectListItem> { new SelectListItem
+            {
+                Text="Apple",
+                Value="A",
+                Selected=true
+            } ,new SelectListItem
+            {
+                Text="FaceBook",
+                Value="F",
+                Selected=false
+            },new SelectListItem
+            {
+                Text="Google",
+                Value="G",
+                Selected=true
+            }};
+
+            return View(vm);
+        }
+
+        [HttpPost]
+        public ActionResult About(CheckboxViewModel vm)
+        {
+ 
+
+            return View(vm);
         }
 
         public ActionResult Contact()

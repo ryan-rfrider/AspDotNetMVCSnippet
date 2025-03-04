@@ -1,9 +1,39 @@
-﻿@{
+﻿
+@model AspDotNetMVCSnippet.Controllers.CheckboxViewModel
+@{
     ViewBag.Title = "About";
 }
-<main aria-labelledby="title">
-    <h2 id="title">@ViewBag.Title.</h2>
-    <h3>@ViewBag.Message</h3>
+<main>
+    @using (Html.BeginForm())
+    {
+        <div style="border:1px solid;border-color:red">
+            <div>
+                <input class="form-check-input" type="checkbox" id="ChkA" name="ChkA" value="true" @(Model.ChkA ? "checked" : "") />
+                <label for="ChkA">A</label>
+            </div>
+            <div>
+                <input class="form-check-input" type="checkbox" id="ChkB" name="ChkB" value="true" @(Model.ChkB ? "checked" : "") />
+                <label for="ChkB">B</label>
+            </div>
+            <div>
+                <input class="form-check-input" type="checkbox" id="ChkC" name="ChkC" value="true" @(Model.ChkC ? "checked" : "") />
+                <label for="ChkC">C</label>
+            </div>
+        </div>
+        <div style="border:1px solid;border-color:red">
+        </div>
+        <div style="border:1px solid;border-color:red">
+            @for (int i = 0; i < Model.ChkListA.Count; i++)
+            {
+                @Html.CheckBoxFor(x => x.ChkListA[i].Selected, new { @class = "form-check-input" })
+                @Html.HiddenFor(m => m.ChkListA[i].Value)
+                @Html.HiddenFor(m => m.ChkListA[i].Text)
+                @Html.LabelFor(x => x.ChkListA[i].Text, Model.ChkListA[i].Text)
+            }
+        </div>
 
-    <p>Use this area to provide additional information.</p>
+        <div class="col-md-auto" style="margin-top: 10px;">
+            <input value="submit" type="submit" class="btn-success " />
+        </div>
+    }
 </main>
