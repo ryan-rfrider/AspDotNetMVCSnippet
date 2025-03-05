@@ -31,6 +31,7 @@ namespace AspDotNetMVCSnippet.Controllers
 
         public List<SelectListItem> ChkListA { get; set; }
 
+        public List<SelectListItem> ChkListB { get; set; }
     }
     public class HomeController : Controller
     {
@@ -150,6 +151,23 @@ namespace AspDotNetMVCSnippet.Controllers
             {
                 Text="Google",
                 Value="G",
+                Selected=true
+            }};
+
+            vm.ChkListB = new List<SelectListItem> { new SelectListItem
+            {
+                Text="Apple",
+                Value="A",
+                Selected=true
+            } ,new SelectListItem
+            {
+                Text="Dell",
+                Value="D",
+                Selected=false
+            },new SelectListItem
+            {
+                Text="HP",
+                Value="H",
                 Selected=true
             }};
 
