@@ -33,6 +33,16 @@ namespace AspDotNetMVCSnippet.Controllers
 
         public List<SelectListItem> ChkListB { get; set; }
     }
+
+    public class RadioButtonViewModel
+    {
+        public string RadioA { get; set; }
+        public string RadioB { get; set; }
+
+        public string RadioValueA { get; set; }
+        public List<SelectListItem> RadioListA { get; set; }
+        public List<SelectListItem> RadioListB { get; set; }
+    }
     public class HomeController : Controller
     {
         public ActionResult Index()
@@ -184,9 +194,52 @@ namespace AspDotNetMVCSnippet.Controllers
 
         public ActionResult Contact()
         {
-            ViewBag.Message = "Your contact page.";
+            RadioButtonViewModel vm = new RadioButtonViewModel();
 
-            return View();
+            vm.RadioA = "A";
+            vm.RadioB = "D";
+            vm.RadioListA = new List<SelectListItem>() { new SelectListItem()
+            {
+                Text="Apple",
+                Value="A",
+                Selected=false
+
+            } ,new SelectListItem()
+            {
+                Text="Dell",
+                Value="D",
+                Selected=true
+            },new SelectListItem()
+            {
+                Text="HP",
+                Value="H",
+                Selected=false
+            }};
+
+            return View(vm);
+        }
+
+        [HttpPost]
+        public ActionResult Contact(RadioButtonViewModel vm)
+        {
+            vm.RadioListA = new List<SelectListItem>() { new SelectListItem()
+            {
+                Text="Apple",
+                Value="A",
+                //Selected=vm.RadioB=="A"
+
+            } ,new SelectListItem()
+            {
+                Text="Dell",
+                Value="D",
+                //Selected=vm.RadioB=="D"
+            },new SelectListItem()
+            {
+                Text="HP",
+                Value="H",
+                //Selected=vm.RadioB=="H"
+            }};
+            return View(vm);
         }
     }
 }

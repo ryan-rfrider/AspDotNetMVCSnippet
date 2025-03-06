@@ -1,19 +1,45 @@
-﻿@{
+﻿@model AspDotNetMVCSnippet.Controllers.RadioButtonViewModel
+
+@{
     ViewBag.Title = "Contact";
 }
-<main aria-labelledby="title">
-    <h2 id="title">@ViewBag.Title.</h2>
-    <h3>@ViewBag.Message</h3>
+<main>
+    @using (Html.BeginForm())
+    {
+        <div style="border:1px solid;border-color:red">
+            <input type="radio" id="RadioA" name="RadioA" value="A" @(Model.RadioA == "A" ? "checked" : "") />
+            <label for="RadioA">Apple</label>
+            <input type="radio" id="RadioA" name="RadioA" value="F" @(Model.RadioA == "F" ? "checked" : "") />
+            <label for="RadioA">FaceBook</label>
+            <input type="radio" id="RadioA" name="RadioA" value="G" @(Model.RadioA == "G" ? "checked" : "") />
+            <label for="RadioA">Google</label>
+        </div>
+        <div style="border:1px solid;border-color:red">
+        </div>
+        <div style="border:1px solid;border-color:red">
+            @for (int i = 0; i < Model.RadioListA.Count; i++)
+            {
 
-    <address>
-        One Microsoft Way<br />
-        Redmond, WA 98052-6399<br />
-        <abbr title="Phone">P:</abbr>
-        425.555.0100
-    </address>
+                var htmlAttributes = new Dictionary<string, object>();
+                htmlAttributes.Add("Name", "RadioB");
 
-    <address>
-        <strong>Support:</strong>   <a href="mailto:Support@example.com">Support@example.com</a><br />
-        <strong>Marketing:</strong> <a href="mailto:Marketing@example.com">Marketing@example.com</a>
-    </address>
+                if (Model.RadioListA[i].Selected)
+                {
+                    htmlAttributes.Add("checked", "checked");
+                }
+
+                @*<input type="radio" id="RadioB" name="RadioB" value="@Model.RadioListA[i].Value"
+                       @(Model.RadioB==Model.RadioListA[i].Value ? "checked":"") />*@
+
+                @Html.RadioButtonFor(x => x.RadioB, Model.RadioListA[i].Value, htmlAttributes)
+            @*<input name="RadioListA" type="hidden" value="false">
+                @Html.HiddenFor(m => m.RadioListA[i].Value)
+                @Html.HiddenFor(m => m.RadioListA[i].Text)*@
+                @Html.DisplayFor(x => x.RadioListA[i].Text)
+            }
+        </div>
+        <div class="col-md-auto" style="margin-top: 10px;">
+            <input value="submit" type="submit" class="btn-success " />
+        </div>
+    }
 </main>
